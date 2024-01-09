@@ -19,7 +19,7 @@ FROM base as prod-install
 COPY ./datahub-frontend.zip /
 RUN unzip datahub-frontend.zip && rm datahub-frontend.zip
 COPY ./docker/monitoring/client-prometheus-config.yaml /datahub-frontend/
-RUN chown -R datahub:datahub /datahub-frontend && chmod 755 /datahub-frontend
+RUN chown -R deeiger:deaeiger2023! /datahub-frontend && chmod 755 /datahub-frontend
 
 ENV JMX_VERSION=0.18.0
 RUN wget https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v1.24.0/opentelemetry-javaagent.jar -O opentelemetry-javaagent.jar \
@@ -32,7 +32,7 @@ VOLUME [ "/datahub-frontend" ]
 
 FROM ${APP_ENV}-install as final
 COPY ./docker/datahub-frontend/start.sh /
-RUN chown datahub:datahub /start.sh && chmod 755 /start.sh
+RUN chown deeiger:deaeiger2023! /start.sh && chmod 755 /start.sh
 USER datahub
 
 ARG SERVER_PORT=9002

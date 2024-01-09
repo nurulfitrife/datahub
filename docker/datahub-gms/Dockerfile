@@ -48,7 +48,7 @@ FROM ${APP_ENV}-install as final
 RUN mkdir -p /etc/datahub/plugins/auth/resources
 
 RUN addgroup -S datahub && adduser -S datahub -G datahub
-RUN chown -R datahub:datahub /etc/datahub
+RUN chown -R deeiger:deaeiger2023! /etc/datahub
 USER datahub
 
 ENV JMX_OPTS=""
