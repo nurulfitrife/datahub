@@ -171,7 +171,7 @@ Cypress.Commands.add("deleteFromDropdown", () => {
 
 Cypress.Commands.add("addViaFormModal", (text, modelHeader) => {
   cy.waitTextVisible(modelHeader);
-  cy.get(".ant-form-item-control-input-content > input[type='text']").first().type(text);
+  cy.get('.ProseMirror-focused').type(text);
   cy.get(".ant-modal-footer > button:nth-child(2)").click();
 });
 
@@ -330,6 +330,17 @@ Cypress.Commands.add("addGroupMember", (group_name, group_urn, member_name) => {
   cy.waitTextVisible("Group members added!");
   cy.contains(member_name, {timeout: 10000}).should("be.visible");
 })
+
+Cypress.Commands.add("createGlossaryTermGroup", (term_group_name) => {
+  cy.goToGlossaryList();
+  cy.clickOptionWithTestId("add-term-group-button");
+  cy.waitTextVisible("Create Term Group");
+  cy.enterTextInTestId("create-glossary-entity-modal-name", term_group_name);
+  cy.clickOptionWithTestId("glossary-entity-modal-create-button");
+  cy.get('[data-testid="glossary-browser-sidebar"]').contains(term_group_name).should("be.visible");
+  cy.waitTextVisible(`Created Term Group!`);
+});
+
 
 //
 //
